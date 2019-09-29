@@ -1,1 +1,7 @@
 title: Bootstrap Starter
+contact:
+  name: Your Company
+  street_line: 3481 Melrose Place
+  city_line: Beverly Hills, CA 90210
+  phone: (123) 456-7890
+  email: name@example.com

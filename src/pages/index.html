@@ -1,5 +1,55 @@
+{{> navbar}}
+
+{{#section}}
+  {{> header}}
+{{/section}}
+
 {{#section}}
   <div class="container">
-    <h1>Hello Bootstrap!</h1>
+
+    <div class="row">
+      <div class="col-md-8 mb-5">
+        <h2>What We Do</h2>
+        <hr>
+        <p>{{lorem count=3}}</p>
+        <p>{{lorem count=4}}</p>
+        <a class="btn btn-primary btn-lg" href="#">Call to Action &raquo;</a>
+      </div>
+
+      <div class="col-md-4 mb-5">
+        {{#with site.contact}}
+          <h2>Contact Us</h2>
+          <hr>
+          <address>
+            <strong>{{name}}</strong>
+            <br>{{street_line}}
+            <br>{{city_line}}
+            <br>
+          </address>
+          <address>
+            <span><i class="fas fa-phone"></i></span>
+            {{phone}}
+            <br>
+            <span><i class="fas fa-envelope"></i></span>
+            <a href="mailto:#">{{email}}</a>
+          </address>
+        {{/with}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 mb-5">
+        {{> card keywords='home'}}
+      </div>
+      <div class="col-md-4 mb-5">
+        {{> card keywords='construction'}}
+      </div>
+      <div class="col-md-4 mb-5">
+        {{> card keywords='kitchen'}}
+      </div>
+    </div>
+
   </div>
 {{/section}}
+
+{{> footer}}
