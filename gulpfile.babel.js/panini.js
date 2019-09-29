@@ -1,0 +1,57 @@
+var panini;
+var help = require('panini/lib/helpMessage');
+
+/**
+ * Initializes an instance of Panini.
+ * @constructor
+ * @param {object} options - Configuration options to use.
+ */
+function Panini(options) {
+    this.options = options;
+    this.Handlebars = require('handlebars');
+    require('handlebars-helpers')({
+        handlebars: this.Handlebars
+    });
+    this.layouts = {};
+    this.data = {};
+
+    if (!options.layouts) {
+        throw new Error('Panini error: you must specify a directory for layouts.');
+    }
+
+    if (!options.root) {
+        throw new Error('Panini error: you must specify the root folder that pages live in.')
+    }
+}
+
+Panini.prototype.refresh = require('panini/lib/refresh');
+Panini.prototype.loadLayouts = require('panini/lib/loadLayouts');
+Panini.prototype.loadPartials = require('panini/lib/loadPartials');
+Panini.prototype.loadHelpers = require('panini/lib/loadHelpers');
+Panini.prototype.loadBuiltinHelpers = require('panini/lib/loadBuiltinHelpers');
+Panini.prototype.loadData = require('panini/lib/loadData');
+Panini.prototype.render = require('panini/lib/render');
+
+/**
+ * Gulp stream function that renders HTML pages. The first time the function is invoked in the stream, a new instance of Panini is created with the given options.
+ * @param {object} options - Configuration options to pass to the new Panini instance.
+ * @returns {function} Transform stream function that renders HTML pages.
+ */
+module.exports = function (options) {
+    if (!panini) {
+        panini = new Panini(options);
+        panini.loadBuiltinHelpers();
+        panini.refresh();
+        module.exports.refresh = panini.refresh.bind(panini);
+    }
+
+    // Compile pages with the above helpers
+    return panini.render();
+}
+
+module.exports.Panini = Panini;
+module.exports.refresh = function () {
+}
+module.exports.help = function () {
+    help();
+}

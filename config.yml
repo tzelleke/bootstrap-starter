@@ -1,0 +1,25 @@
+PORT: 8000
+
+COMPATIBILITY:
+  - 'last 2 versions'
+  - 'ie >= 9'
+  - 'ios >= 7'
+
+PATHS:
+  dist: 'dist'
+
+  styles:
+    entries:
+      - 'main.scss'
+    includePaths:
+      - 'node_modules'
+
+  scripts:
+    entries:
+      - 'main.js'
+
+  copy:
+    - src: 'src/fonts/**/*'
+      dest: 'dist/fonts'
+    - src: 'node_modules/@fortawesome/fontawesome-free/webfonts/*'
+      dest: 'dist/fonts'

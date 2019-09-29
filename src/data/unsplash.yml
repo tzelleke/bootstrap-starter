@@ -1,0 +1,10 @@
+endpoint: https://source.unsplash.com
+dimensions:
+  21-9-large: '1292x554'
+  16-9-large: '1440x810'
+  16-9-medium: '620x413'
+  16-9-small: '396x264'
+  3-2-large: '1440x960'
+  3-2-medium: '594x396'
+  portrait: '508x677'
+  square: '268x268'
